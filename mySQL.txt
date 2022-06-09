@@ -1,0 +1,1517 @@
+Enter password: *******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.21 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE book_store;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| book_store         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> USE book_store;
+Database changed
+mysql> DROP DATABASE book_store;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE DATABASE book_store;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE book_store;
+Database changed
+
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| book_store |
++------------+
+1 row in set (0.00 sec)
+
+mysql> STATUS;
+--------------
+C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe  Ver 8.0.21 for Win64 on x86_64 (MySQL Community Server - GPL)
+
+Connection id:          13
+Current database:       book_store
+Current user:           root@localhost
+SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384
+Using delimiter:        ;
+Server version:         8.0.21 MySQL Community Server - GPL
+Protocol version:       10
+Connection:             localhost via TCP/IP
+Server characterset:    utf8mb4
+Db     characterset:    utf8mb4
+Client characterset:    cp850
+Conn.  characterset:    cp850
+TCP port:               3306
+Binary data as:         Hexadecimal
+Uptime:                 8 hours 26 min 24 sec
+
+Threads: 2  Questions: 35  Slow queries: 0  Opens: 172  Flush tables: 3  Open tables: 90  Queries per second avg: 0.001
+--------------
+
+mysql> CREATE DATABASE guiter_store;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE guiter_store;
+Database changed
+mysql> SHOW TABLES;
+Empty set (0.02 sec)
+
+mysql> CREATE TABLE guiter(model VARCHAR(100),price INT);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> SHOW TABLES;
++------------------------+
+| Tables_in_guiter_store |
++------------------------+
+| guiter                 |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> DESCRIBE guiter;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | YES  |     | NULL    |       |
+| price | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> DESC guiter;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | YES  |     | NULL    |       |
+| price | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO guiter(model, price) VALUE ("yamha",10000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO guiter VALUE ("tylor",50000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO guiter(price, model) VALUE (15000,"faith");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT *FROM guiter;
++-------+-------+
+| model | price |
++-------+-------+
+| yamha | 10000 |
+| tylor | 50000 |
+| faith | 15000 |
++-------+-------+
+3 rows in set (0.00 sec)
+
+
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM guiter;
++-------+--------+
+| model | price  |
++-------+--------+
+| yamha |  10000 |
+| tylor |  50000 |
+| faith |  15000 |
+| yamha |  10000 |
+| alla  | 120000 |
+| good  | 130000 |
++-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> DESC guiter;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | YES  |     | NULL    |       |
+| price | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+mysql> DESC guiter;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | YES  |     | NULL    |       |
+| price | int          | YES  |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM guiter;
++-------+--------+
+| model | price  |
++-------+--------+
+| yamha |  10000 |
+| tylor |  50000 |
+| faith |  15000 |
+| yamha |  10000 |
+| alla  | 120000 |
+| good  | 130000 |
++-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE guiter2(model VARCHAR(100) DEFAULT "unknown" ,price INT DEFAULT -1);
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> INSERT INTO guiter2(model)  VALUES ("yamha"),("tylor");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM guiter;
++-------+--------+
+| model | price  |
++-------+--------+
+| yamha |  10000 |
+| tylor |  50000 |
+| faith |  15000 |
+| yamha |  10000 |
+| alla  | 120000 |
+| good  | 130000 |
++-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM guiter2;
++-------+-------+
+| model | price |
++-------+-------+
+| yamha |    -1 |
+| tylor |    -1 |
++-------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO guiter2() VALUES (),();
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM guiter2;
++---------+-------+
+| model   | price |
++---------+-------+
+| yamha   |    -1 |
+| tylor   |    -1 |
+| unknown |    -1 |
+| unknown |    -1 |
++---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DESC guiter2;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | YES  |     | unknown |       |
+| price | int          | YES  |     | -1      |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO guiter2(model, price) VALUES ("yamha", NULL),("tylor", NULL);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM guiter2;
++---------+-------+
+| model   | price |
++---------+-------+
+| yamha   |    -1 |
+| tylor   |    -1 |
+| unknown |    -1 |
+| unknown |    -1 |
+| yamha   |  NULL |
+| tylor   |  NULL |
++---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE guiter3(model VARCHAR(100) DEFAULT 'unknown'NOT NULL, price INT DEFAULT -1 NOT NULL);
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> SELECT * FROM guiter3;
+Empty set (0.01 sec)
+
+mysql> DESC guiter3;
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| model | varchar(100) | NO   |     | unknown |       |
+| price | int          | NO   |     | -1      |       |
++-------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> CREATE DATABASE insta_user;
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> USE insta_user;
+Database changed
+mysql> SHOW TABLE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SHOW TABLES;
+Empty set (0.00 sec)
+
+mysql> CREATE TABLE insta(username VARCHAR(100) ,password VARCHAR(255));
+Query OK, 0 rows affected (0.10 sec)
+
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_insta_user |
++----------------------+
+| insta                |
++----------------------+
+1 row in set (0.01 sec)
+
+mysql> DESC insta;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| username | varchar(100) | YES  |     | NULL    |       |
+| password | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+mysql> SELECT * FROM insta;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO insta VALUE ("zahid","Hadi");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM insta;
++----------+----------+
+| username | password |
++----------+----------+
+| zahid    | Hadi     |
++----------+----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO insta VALUE ("zahid","riaz");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM insta;
++----------+----------+
+| username | password |
++----------+----------+
+| zahid    | Hadi     |
+| zahid    | riaz     |
++----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE insta2(username VARCHAR(100)PRIMARY KEY ,password VARCHAR(255));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> INSERT INTO insta2 VALUE ("zahid","riaz");
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> DESC insta2;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| username | varchar(100) | NO   | PRI | NULL    |       |
+| password | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+ 
+mysql> CREATE TABLE books(
+    -> book_id INT PRIMARY KEY AUTO_INCREMENT,
+    -> name VARCHAR(100) DEFAULT "UNKNOWN",
+    -> author VARCHAR(100) DEFAULT "UNKNOWN",
+    -> price INT);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT INTO books(name, author, price) VALUES
+    -> ('think and grow rich','nepoleon hill',100),
+    -> ('power of now','eckhart tolle',400),
+    -> ('atomic habits','james clear',500),
+    -> ('rich dad poor dad','robart kiyosaki',200);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM books;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   100 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       3 | atomic habits       | james clear     |   500 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT name, price FROM books;
++---------------------+-------+
+| name                | price |
++---------------------+-------+
+| think and grow rich |   100 |
+| power of now        |   400 |
+| atomic habits       |   500 |
+| rich dad poor dad   |   200 |
++---------------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT price, name FROM books;
++-------+---------------------+
+| price | name                |
++-------+---------------------+
+|   100 | think and grow rich |
+|   400 | power of now        |
+|   500 | atomic habits       |
+|   200 | rich dad poor dad   |
++-------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE author = 'nepolon';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE author = 'nepolon hill';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE author = 'nepoleon hill';
++---------+---------------------+---------------+-------+
+| book_id | name                | author        | price |
++---------+---------------------+---------------+-------+
+|       1 | think and grow rich | nepoleon hill |   100 |
++---------+---------------------+---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE name = 'atomic habits';
++---------+---------------+-------------+-------+
+| book_id | name          | author      | price |
++---------+---------------+-------------+-------+
+|       3 | atomic habits | james clear |   500 |
++---------+---------------+-------------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE book_id = 2;
++---------+--------------+---------------+-------+
+| book_id | name         | author        | price |
++---------+--------------+---------------+-------+
+|       2 | power of now | eckhart tolle |   400 |
++---------+--------------+---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE price < 500;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   100 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE price <= 400;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   100 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM books WHERE price >= 400;
++---------+---------------+---------------+-------+
+| book_id | name          | author        | price |
++---------+---------------+---------------+-------+
+|       2 | power of now  | eckhart tolle |   400 |
+|       3 | atomic habits | james clear   |   500 |
++---------+---------------+---------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM books;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   100 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       3 | atomic habits       | james clear     |   500 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+4 rows in set (0.00 sec)
+
+
+mysql> UPDATE books SET price = 200 WHERE author = 'nepoleon hill';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM books;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   200 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       3 | atomic habits       | james clear     |   500 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> UPDATE books SET price = 500 WHERE book_id = 3;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> SELECT name, price FROM books;
++---------------------+-------+
+| name                | price |
++---------------------+-------+
+| think and grow rich |   200 |
+| power of now        |   400 |
+| atomic habits       |   500 |
+| rich dad poor dad   |   200 |
++---------------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM books WHERE price >= 500;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM books;
++---------+---------------------+-----------------+-------+
+| book_id | name                | author          | price |
++---------+---------------------+-----------------+-------+
+|       1 | think and grow rich | nepoleon hill   |   200 |
+|       2 | power of now        | eckhart tolle   |   400 |
+|       4 | rich dad poor dad   | robart kiyosaki |   200 |
++---------+---------------------+-----------------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> SELECT name AS book_name, price FROM books;
++---------------------+-------+
+| book_name           | price |
++---------------------+-------+
+| think and grow rich |   200 |
+| power of now        |   400 |
+| rich dad poor dad   |   200 |
++---------------------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql>  CREATE TABLE students(
+    -> s_id INT AUTO_INCREMENT,
+    -> first_name VARCHAR(100),
+    -> last_name VARCHAR(100),
+    -> PRIMARY KEY(s_id)
+    -> );
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> INSERT INTO students(first_name, last_name) VALUES
+    -> ('zahid','riaz'),
+    -> ('shahid','riaz'),
+    -> ('abdul','Hadi'),
+    -> ('amjad','hussain'),
+    -> ('asjad','hussain'),
+    -> ('tariq','aziz'),
+    -> ('zafar','aziz'),
+    -> ('azhar','nawaz'),
+    -> ('mazhar','nawaz'),
+    -> ('waseem','arshad'),
+    -> ('shoaib','arshad');
+Query OK, 11 rows affected (0.01 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+
+mysql> DESC students;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| s_id       | int          | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(100) | YES  |     | NULL    |                |
+| last_name  | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT * FROM students;
++------+------------+-----------+
+| s_id | first_name | last_name |
++------+------------+-----------+
+|    1 | zahid      | riaz      |
+|    2 | shahid     | riaz      |
+|    3 | abdul      | Hadi      |
+|    4 | amjad      | hussain   |
+|    5 | asjad      | hussain   |
+|    6 | tariq      | aziz      |
+|    7 | zafar      | aziz      |
+|    8 | azhar      | nawaz     |
+|    9 | mazhar     | nawaz     |
+|   10 | waseem     | arshad    |
+|   11 | shoaib     | arshad    |
++------+------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT last_name FROM students;
++-----------+
+| last_name |
++-----------+
+| riaz      |
+| Hadi      |
+| hussain   |
+| aziz      |
+| nawaz     |
+| arshad    |
++-----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT first_name FROM students;
++------------+
+| first_name |
++------------+
+| zahid      |
+| shahid     |
+| abdul      |
+| amjad      |
+| asjad      |
+| tariq      |
+| zafar      |
+| azhar      |
+| mazhar     |
+| waseem     |
+| shoaib     |
++------------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT first_name,last_name FROM students;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| zahid      | riaz      |
+| shahid     | riaz      |
+| abdul      | Hadi      |
+| amjad      | hussain   |
+| asjad      | hussain   |
+| tariq      | aziz      |
+| zafar      | aziz      |
+| azhar      | nawaz     |
+| mazhar     | nawaz     |
+| waseem     | arshad    |
+| shoaib     | arshad    |
++------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> INSERT INTO students(first_name, last_name) VALUES
+    -> ('tariq','aziz'),
+    -> ('zafar','aziz');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM students;
++------+------------+-----------+
+| s_id | first_name | last_name |
++------+------------+-----------+
+|    1 | zahid      | riaz      |
+|    2 | shahid     | riaz      |
+|    3 | abdul      | Hadi      |
+|    4 | amjad      | hussain   |
+|    5 | asjad      | hussain   |
+|    6 | tariq      | aziz      |
+|    7 | zafar      | aziz      |
+|    8 | azhar      | nawaz     |
+|    9 | mazhar     | nawaz     |
+|   10 | waseem     | arshad    |
+|   11 | shoaib     | arshad    |
+|   12 | tariq      | aziz      |
+|   13 | zafar      | aziz      |
++------+------------+-----------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT first_name,last_name FROM students;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| zahid      | riaz      |
+| shahid     | riaz      |
+| abdul      | Hadi      |
+| amjad      | hussain   |
+| asjad      | hussain   |
+| tariq      | aziz      |
+| zafar      | aziz      |
+| azhar      | nawaz     |
+| mazhar     | nawaz     |
+| waseem     | arshad    |
+| shoaib     | arshad    |
++------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(first_name, last_name) AS full_name FROM students;
++--------------+
+| full_name    |
++--------------+
+| zahidriaz    |
+| shahidriaz   |
+| abdulHadi    |
+| amjadhussain |
+| asjadhussain |
+| tariqaziz    |
+| zafaraziz    |
+| azharnawaz   |
+| mazharnawaz  |
+| waseemarshad |
+| shoaibarshad |
+| tariqaziz    |
+| zafaraziz    |
++--------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(first_name,'', last_name) AS full_name FROM students;
++--------------+
+| full_name    |
++--------------+
+| zahidriaz    |
+| shahidriaz   |
+| abdulHadi    |
+| amjadhussain |
+| asjadhussain |
+| tariqaziz    |
+| zafaraziz    |
+| azharnawaz   |
+| mazharnawaz  |
+| waseemarshad |
+| shoaibarshad |
+| tariqaziz    |
+| zafaraziz    |
++--------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(first_name,' ', last_name) AS full_name FROM students;
++---------------+
+| full_name     |
++---------------+
+| zahid riaz    |
+| shahid riaz   |
+| abdul Hadi    |
+| amjad hussain |
+| asjad hussain |
+| tariq aziz    |
+| zafar aziz    |
+| azhar nawaz   |
+| mazhar nawaz  |
+| waseem arshad |
+| shoaib arshad |
+| tariq aziz    |
+| zafar aziz    |
++---------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT('hello','world');
++-------------------------+
+| CONCAT('hello','world') |
++-------------------------+
+| helloworld              |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CONCAT('hello',' ','world');
++-----------------------------+
+| CONCAT('hello',' ','world') |
++-----------------------------+
+| hello world                 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DISTINCT first_name,last_name FROM students;
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| zahid      | riaz      |
+| shahid     | riaz      |
+| abdul      | Hadi      |
+| amjad      | hussain   |
+| asjad      | hussain   |
+| tariq      | aziz      |
+| zafar      | aziz      |
+| azhar      | nawaz     |
+| mazhar     | nawaz     |
+| waseem     | arshad    |
+| shoaib     | arshad    |
++------------+-----------+
+11 rows in set (0.00 sec)
+
+mysql> DESC students;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| s_id       | int          | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(100) | YES  |     | NULL    |                |
+| last_name  | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE students ADD s_email VARCHAR(200)DEFAULT 'UNKNOWN';
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC students;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| s_id       | int          | NO   | PRI | NULL    | auto_increment |
+| first_name | varchar(100) | YES  |     | NULL    |                |
+| last_name  | varchar(100) | YES  |     | NULL    |                |
+| s_email    | varchar(200) | YES  |     | UNKNOWN |                |
++------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM students;
++------+------------+-----------+---------+
+| s_id | first_name | last_name | s_email |
++------+------------+-----------+---------+
+|    1 | zahid      | riaz      | UNKNOWN |
+|    2 | shahid     | riaz      | UNKNOWN |
+|    3 | abdul      | Hadi      | UNKNOWN |
+|    4 | amjad      | hussain   | UNKNOWN |
+|    5 | asjad      | hussain   | UNKNOWN |
+|    6 | tariq      | aziz      | UNKNOWN |
+|    7 | zafar      | aziz      | UNKNOWN |
+|    8 | azhar      | nawaz     | UNKNOWN |
+|    9 | mazhar     | nawaz     | UNKNOWN |
+|   10 | waseem     | arshad    | UNKNOWN |
+|   11 | shoaib     | arshad    | UNKNOWN |
+|   12 | tariq      | aziz      | UNKNOWN |
+|   13 | zafar      | aziz      | UNKNOWN |
++------+------------+-----------+---------+
+13 rows in set (0.00 sec)
+
+
+mysql> UPDATE students SET s_email = CONCAT(first_name,'_',last_name,'@email') WHERE s_email = 'UNKNOWN';
+Query OK, 13 rows affected (0.00 sec)
+Rows matched: 13  Changed: 13  Warnings: 0
+
+mysql> SELECT *FROM students;
++------+------------+-----------+---------------------+
+| s_id | first_name | last_name | s_email             |
++------+------------+-----------+---------------------+
+|    1 | zahid      | riaz      | zahid_riaz@email    |
+|    2 | shahid     | riaz      | shahid_riaz@email   |
+|    3 | abdul      | Hadi      | abdul_Hadi@email    |
+|    4 | amjad      | hussain   | amjad_hussain@email |
+|    5 | asjad      | hussain   | asjad_hussain@email |
+|    6 | tariq      | aziz      | tariq_aziz@email    |
+|    7 | zafar      | aziz      | zafar_aziz@email    |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   |
+|    9 | mazhar     | nawaz     | mazhar_nawaz@email  |
+|   10 | waseem     | arshad    | waseem_arshad@email |
+|   11 | shoaib     | arshad    | shoaib_arshad@email |
+|   12 | tariq      | aziz      | tariq_aziz@email    |
+|   13 | zafar      | aziz      | zafar_aziz@email    |
++------+------------+-----------+---------------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT SUBSTRING('hello word', 1,2);
++------------------------------+
+| SUBSTRING('hello word', 1,2) |
++------------------------------+
+| he                           |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUBSTRING('hello word', 1,4);
++------------------------------+
+| SUBSTRING('hello word', 1,4) |
++------------------------------+
+| hell                         |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SUBSTRING('hello word', 1,1);
++------------------------------+
+| SUBSTRING('hello word', 1,1) |
++------------------------------+
+| h                            |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *FROM students WHERE SUBSTRING(first_name, 1,1) ='a';
++------+------------+-----------+---------------------+
+| s_id | first_name | last_name | s_email             |
++------+------------+-----------+---------------------+
+|    3 | abdul      | Hadi      | abdul_Hadi@email    |
+|    4 | amjad      | hussain   | amjad_hussain@email |
+|    5 | asjad      | hussain   | asjad_hussain@email |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   |
++------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT *FROM students WHERE SUBSTRING(first_name, 1,1) ='z';
++------+------------+-----------+------------------+
+| s_id | first_name | last_name | s_email          |
++------+------------+-----------+------------------+
+|    1 | zahid      | riaz      | zahid_riaz@email |
+|    7 | zafar      | aziz      | zafar_aziz@email |
+|   13 | zafar      | aziz      | zafar_aziz@email |
++------+------------+-----------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *FROM students WHERE SUBSTRING(first_name, 1,1) ='s';
++------+------------+-----------+---------------------+
+| s_id | first_name | last_name | s_email             |
++------+------------+-----------+---------------------+
+|    2 | shahid     | riaz      | shahid_riaz@email   |
+|   11 | shoaib     | arshad    | shoaib_arshad@email |
++------+------------+-----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *FROM students WHERE SUBSTRING(first_name, 1,1) ='za';
+Empty set (0.00 sec)
+
+mysql> SELECT *FROM students WHERE SUBSTRING(first_name, 1,2) ='za';
++------+------------+-----------+------------------+
+| s_id | first_name | last_name | s_email          |
++------+------------+-----------+------------------+
+|    1 | zahid      | riaz      | zahid_riaz@email |
+|    7 | zafar      | aziz      | zafar_aziz@email |
+|   13 | zafar      | aziz      | zafar_aziz@email |
++------+------------+-----------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE students ADD age INT;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT *FROM students;
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email    | NULL |
+|    2 | shahid     | riaz      | shahid_riaz@email   | NULL |
+|    3 | abdul      | Hadi      | abdul_Hadi@email    | NULL |
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
+|    6 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   | NULL |
+|    9 | mazhar     | nawaz     | mazhar_nawaz@email  | NULL |
+|   10 | waseem     | arshad    | waseem_arshad@email | NULL |
+|   11 | shoaib     | arshad    | shoaib_arshad@email | NULL |
+|   12 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email    | NULL |
++------+------------+-----------+---------------------+------+
+13 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM students WHERE first_name LIKE "za%";
++------+------------+-----------+------------------+------+
+| s_id | first_name | last_name | s_email          | age  |
++------+------------+-----------+------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email | NULL |
++------+------------+-----------+------------------+------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "%hi%";
++------+------------+-----------+-------------------+------+
+| s_id | first_name | last_name | s_email           | age  |
++------+------------+-----------+-------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email  | NULL |
+|    2 | shahid     | riaz      | shahid_riaz@email | NULL |
++------+------------+-----------+-------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "%ad";
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
++------+------------+-----------+---------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "ah";
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "zahid";
++------+------------+-----------+------------------+------+
+| s_id | first_name | last_name | s_email          | age  |
++------+------------+-----------+------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email | NULL |
++------+------------+-----------+------------------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "_____";
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email    | NULL |
+|    3 | abdul      | Hadi      | abdul_Hadi@email    | NULL |
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
+|    6 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   | NULL |
+|   12 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email    | NULL |
++------+------------+-----------+---------------------+------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "____";
+Empty set (0.00 sec)
+
+
+mysql> SELECT * FROM students;
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email    | NULL |
+|    2 | shahid     | riaz      | shahid_riaz@email   | NULL |
+|    3 | abdul      | Hadi      | abdul_Hadi@email    | NULL |
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
+|    6 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   | NULL |
+|    9 | mazhar     | nawaz     | mazhar_nawaz@email  | NULL |
+|   10 | waseem     | arshad    | waseem_arshad@email | NULL |
+|   11 | shoaib     | arshad    | shoaib_arshad@email | NULL |
+|   12 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email    | NULL |
++------+------------+-----------+---------------------+------+
+13 rows in set (0.00 sec)
+
+
+mysql> SELECT first_name FROM students ORDER BY first_name;
++------------+
+| first_name |
++------------+
+| abdul      |
+| amjad      |
+| asjad      |
+| azhar      |
+| mazhar     |
+| shahid     |
+| shoaib     |
+| tariq      |
+| tariq      |
+| waseem     |
+| zafar      |
+| zafar      |
+| zahid      |
++------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students ORDER BY first_name;
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    3 | abdul      | Hadi      | abdul_Hadi@email    | NULL |
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   | NULL |
+|    9 | mazhar     | nawaz     | mazhar_nawaz@email  | NULL |
+|    2 | shahid     | riaz      | shahid_riaz@email   | NULL |
+|   11 | shoaib     | arshad    | shoaib_arshad@email | NULL |
+|    6 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   12 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   10 | waseem     | arshad    | waseem_arshad@email | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|    1 | zahid      | riaz      | zahid_riaz@email    | NULL |
++------+------------+-----------+---------------------+------+
+13 rows in set (0.00 sec)
+
+
+mysql> SELECT * FROM students ORDER BY first_name DESC;
++------+------------+-----------+---------------------+------+
+| s_id | first_name | last_name | s_email             | age  |
++------+------------+-----------+---------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email    | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|   13 | zafar      | aziz      | zafar_aziz@email    | NULL |
+|   10 | waseem     | arshad    | waseem_arshad@email | NULL |
+|    6 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   12 | tariq      | aziz      | tariq_aziz@email    | NULL |
+|   11 | shoaib     | arshad    | shoaib_arshad@email | NULL |
+|    2 | shahid     | riaz      | shahid_riaz@email   | NULL |
+|    9 | mazhar     | nawaz     | mazhar_nawaz@email  | NULL |
+|    8 | azhar      | nawaz     | azhar_nawaz@email   | NULL |
+|    5 | asjad      | hussain   | asjad_hussain@email | NULL |
+|    4 | amjad      | hussain   | amjad_hussain@email | NULL |
+|    3 | abdul      | Hadi      | abdul_Hadi@email    | NULL |
++------+------------+-----------+---------------------+------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "za%" LIMIT 2;
++------+------------+-----------+------------------+------+
+| s_id | first_name | last_name | s_email          | age  |
++------+------------+-----------+------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email | NULL |
+|    7 | zafar      | aziz      | zafar_aziz@email | NULL |
++------+------------+-----------+------------------+------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM students WHERE first_name LIKE "za%" LIMIT 1;
++------+------------+-----------+------------------+------+
+| s_id | first_name | last_name | s_email          | age  |
++------+------------+-----------+------------------+------+
+|    1 | zahid      | riaz      | zahid_riaz@email | NULL |
++------+------------+-----------+------------------+------+
+1 row in set (0.00 sec)
+
+mysql> SOURCE F:\Al-Nafi\Python\SQL\ExportSQL.sql
+Query OK, 0 rows affected (0.05 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.02 sec)
+
+Query OK, 1 row affected (0.00 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql> SHOW TABLES;
++----------------------+
+| Tables_in_insta_user |
++----------------------+
+| books                |
+| insta                |
+| insta2               |
+| mockdata             |
+| students             |
++----------------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| insta_user |
++------------+
+1 row in set (0.00 sec)
+
+
+
+mysql> SELECT * FROM mockdata;
++------+----------------------------+--------------------------------------+-------------------+
+| ID   | JobTitle                   | EmailAddress                         | FirstNameLastName |
++------+----------------------------+--------------------------------------+-------------------+
+|    1 | Staffing Consultant        | Shay_Shields3896@muall.tech          | Shay Shields      |
+|    2 | Steward                    | Henry_Palmer2424@atink.com           | Henry Palmer      |
+|    3 | Electrician                | Johnny_Carter6641@gmail.com          | Johnny Carter     |
+|    4 | Call Center Representative | Kendra_Shepherd5229@fuliss.net       | Kendra Shepherd   |
+|    5 | Doctor                     | Tom_Parsons3099@gembat.biz           | Tom Parsons       |
+|    6 | Project Manager            | Kieth_Ventura3084@muall.tech         | Kieth Ventura     |
+|    7 | Steward                    | Blake_Drummond9624@infotech44.tech   | Blake Drummond    |
+|    8 | Operator                   | Marie_Roscoe3101@kideod.biz          | Marie Roscoe      |
+|    9 | Machine Operator           | Callie_Woodley319@fuliss.net         | Callie Woodley    |
+|   10 | Webmaster                  | Ellen_Redwood1789@nanoff.biz         | Ellen Redwood     |
+|   11 | Budget Analyst             | Courtney_Kerr9607@gembat.biz         | Courtney Kerr     |
+|   12 | Fabricator                 | Paige_Bristow5049@gompie.com         | Paige Bristow     |
+|   13 | Call Center Representative | Carol_Bryson5133@nimogy.biz          | Carol Bryson      |
+|   14 | Webmaster                  | Marina_Knight4289@gompie.com         | Marina Knight     |
+|   15 | Auditor                    | Ronald_Simpson6319@typill.biz        | Ronald Simpson    |
+|   16 | Bookkeeper                 | Daniel_Ellwood4130@joiniaa.com       | Daniel Ellwood    |
+|   17 | Food Technologist          | Isabella_Graham5770@nanoff.biz       | Isabella Graham   |
+|   18 | Design Engineer            | Vanessa_Stone6511@supunk.biz         | Vanessa Stone     |
+|   19 | Audiologist                | Wendy_Nanton1463@nickia.com          | Wendy Nanton      |
+|   20 | Retail Trainee             | Lucy_Patel38@famism.biz              | Lucy Patel        |
+|   21 | Designer                   | Erica_Andrews9924@brety.org          | Erica Andrews     |
+|   22 | Accountant                 | Peyton_Hale9609@womeona.net          | Peyton Hale       |
+|   23 | Retail Trainee             | Eduardo_Wallace4137@deons.tech       | Eduardo Wallace   |
+|   24 | Steward                    | Rosemary_Gosling6425@tonsy.org       | Rosemary Gosling  |
+|   25 | Ambulatory Nurse           | Miriam_Hudson1775@gembat.biz         | Miriam Hudson     |
+|   26 | Food Technologist          | Priscilla_Wilcox6056@joiniaa.com     | Priscilla Wilcox  |
+|   27 | Webmaster                  | Sarah_Knight1206@ubusive.com         | Sarah Knight      |
+|   28 | Dentist                    | Ruby_Ellison4824@bungar.biz          | Ruby Ellison      |
+|   29 | Cook                       | Kurt_Vaughn8473@bulaffy.com          | Kurt Vaughn       |
+|   30 | Clerk                      | Bob_Anderson7564@vetan.org           | Bob Anderson      |
+|   31 | Health Educator            | Marvin_Chadwick9940@infotech44.tech  | Marvin Chadwick   |
+|   32 | CNC Operator               | Oliver_Butler837@bulaffy.com         | Oliver Butler     |
+|   33 | Service Supervisor         | Eileen_Morris4583@gompie.com         | Eileen Morris     |
+|   34 | Design Engineer            | Piper_Shields5308@nickia.com         | Piper Shields     |
+|   35 | Doctor                     | Bridget_Glass516@yahoo.com           | Bridget Glass     |
+|   36 | Design Engineer            | Sydney_Davies3826@brety.org          | Sydney Davies     |
+|   37 | Fabricator                 | Rhea_King9216@cispeto.com            | Rhea King         |
+|   38 | Web Developer              | Ivette_Reyes3073@extex.org           | Ivette Reyes      |
+|   39 | Operator                   | Carl_Wilkinson6069@joiniaa.com       | Carl Wilkinson    |
+|   40 | Chef Manager               | Michaela_Weasley6052@sheye.org       | Michaela Weasley  |
+|   41 | Physician                  | Carter_Norton6625@bauros.biz         | Carter Norton     |
+|   42 | Food Technologist          | Camellia_Reynolds7424@ubusive.com    | Camellia Reynolds |
+|   43 | Retail Trainee             | Havana_Bentley3584@acrit.org         | Havana Bentley    |
+|   44 | Cook                       | Carter_Saunders1280@gembat.biz       | Carter Saunders   |
+|   45 | Auditor                    | Boris_Keys509@infotech44.tech        | Boris Keys        |
+|   46 | Assistant Buyer            | Jacqueline_Hunt6787@kideod.biz       | Jacqueline Hunt   |
+|   47 | Insurance Broker           | Caleb_Shields7370@bretoux.com        | Caleb Shields     |
+|   48 | Executive Director         | David_Gallacher4606@joiniaa.com      | David Gallacher   |
+|   49 | Cash Manager               | Gil_Thomson2535@dionrab.com          | Gil Thomson       |
+|   50 | Electrician                | Callie_Heaton6715@bauros.biz         | Callie Heaton     |
+|   51 | Treasurer                  | Iris_Freeburn3988@yahoo.com          | Iris Freeburn     |
+|   52 | Web Developer              | Caleb_Cassidy8200@vetan.org          | Caleb Cassidy     |
+|   53 | Mobile Developer           | Hailey_Baker6488@elnee.tech          | Hailey Baker      |
+|   54 | Business Broker            | Alice_Hill3599@bauros.biz            | Alice Hill        |
+|   55 | Accountant                 | Russel_Dillon4769@fuliss.net         | Russel Dillon     |
+|   56 | Service Supervisor         | Roger_Evans6784@bungar.biz           | Roger Evans       |
+|   57 | Food Technologist          | Mark_Duvall121@jiman.org             | Mark Duvall       |
+|   58 | HR Specialist              | Audrey_Thomas7056@deavo.com          | Audrey Thomas     |
+|   59 | Doctor                     | Gabriel_Waterson6219@gompie.com      | Gabriel Waterson  |
+|   60 | Electrician                | Hope_Poulton6153@dionrab.com         | Hope Poulton      |
+|   61 | Accountant                 | Mayleen_Sinclair8727@infotech44.tech | Mayleen Sinclair  |
+|   62 | Project Manager            | Manuel_Gibbons2252@muall.tech        | Manuel Gibbons    |
+|   63 | Bellman                    | Barney_Lowe4502@acrit.org            | Barney Lowe       |
+|   64 | Audiologist                | Benjamin_Baldwin1716@eirey.tech      | Benjamin Baldwin  |
+|   65 | Web Developer              | Alan_Freeburn4842@extex.org          | Alan Freeburn     |
+|   66 | Web Developer              | Jacob_Booth4943@nimogy.biz           | Jacob Booth       |
+|   67 | Front Desk Coordinator     | Charlize_Freeburn9310@nickia.com     | Charlize Freeburn |
+|   68 | Chef Manager               | Liv_Fields7673@mafthy.com            | Liv Fields        |
+|   69 | Business Broker            | Sonya_Flack9019@nanoff.biz           | Sonya Flack       |
+|   70 | Operator                   | Marilyn_Thompson5377@nickia.com      | Marilyn Thompson  |
+|   71 | HR Specialist              | George_Wild3771@yahoo.com            | George Wild       |
+|   72 | Loan Officer               | Bob_Redden6068@deons.tech            | Bob Redden        |
+|   73 | Insurance Broker           | Evie_Wilkinson8849@bauros.biz        | Evie Wilkinson    |
+|   74 | Production Painter         | Tyson_Griffiths451@gmail.com         | Tyson Griffiths   |
+|   75 | Ambulatory Nurse           | Mark_Pitt7681@muall.tech             | Mark Pitt         |
+|   76 | Business Broker            | Rocco_Dillon7929@bungar.biz          | Rocco Dillon      |
+|   77 | Food Technologist          | Bart_Clark842@qater.org              | Bart Clark        |
+|   78 | Pharmacist                 | Rufus_Fall8759@twace.org             | Rufus Fall        |
+|   79 | Staffing Consultant        | Louise_Fulton2193@bungar.biz         | Louise Fulton     |
+|   80 | Dentist                    | Stella_Cunningham976@extex.org       | Stella Cunningham |
+|   81 | Dentist                    | Chester_Rose8937@corti.com           | Chester Rose      |
+|   82 | Insurance Broker           | Chuck_Russell8526@guentu.biz         | Chuck Russell     |
+|   83 | Investment  Advisor        | Bob_Cooper5812@extex.org             | Bob Cooper        |
+|   84 | Biologist                  | Clint_Redwood5486@jiman.org          | Clint Redwood     |
+|   85 | Business Broker            | Cedrick_Simpson2049@deavo.com        | Cedrick Simpson   |
+|   86 | Auditor                    | Mabel_Wren2490@fuliss.net            | Mabel Wren        |
+|   87 | Web Developer              | Daphne_Raven8732@sveldo.biz          | Daphne Raven      |
+|   88 | Pharmacist                 | Owen_Power7099@ovock.tech            | Owen Power        |
+|   89 | Electrician                | Camila_Williams3289@irrepsy.com      | Camila Williams   |
+|   90 | Clerk                      | Kassandra_Lane1701@naiker.biz        | Kassandra Lane    |
+|   91 | Baker                      | George_Page 6332@bungar.biz          | George Page       |
+|   92 | Call Center Representative | Colleen_Blackwall8876@supunk.biz     | Colleen Blackwall |
+|   93 | Operator                   | Joseph_Addley9949@corti.com          | Joseph Addley     |
+|   94 | Call Center Representative | Christine_Archer5067@womeona.net     | Christine Archer  |
+|   95 | CNC Operator               | Rae_Lynn5857@nickia.com              | Rae Lynn          |
+|   96 | Treasurer                  | Kate_Gray4065@cispeto.com            | Kate Gray         |
+|   97 | Auditor                    | Ivette_Vallory621@dionrab.com        | Ivette Vallory    |
+|   98 | Paramedic                  | Mike_Corbett1500@corti.com           | Mike Corbett      |
+|   99 | Dentist                    | Ryan_Watson2499@womeona.net          | Ryan Watson       |
+|  100 | Electrician                | Hayden_Wade415@muall.tech            | Hayden Wade       |
++------+----------------------------+--------------------------------------+-------------------+
+100 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(*) FROM mockdata;
++----------+
+| COUNT(*) |
++----------+
+|      100 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT COUNT(jobTitle) FROM mockdata;
++-----------------+
+| COUNT(jobTitle) |
++-----------------+
+|             100 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT jobTitle) FROM mockdata;
++--------------------------+
+| COUNT(DISTINCT jobTitle) |
++--------------------------+
+|                       46 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(DISTINCT FirstNameLastName) FROM mockdata;
++-----------------------------------+
+| COUNT(DISTINCT FirstNameLastName) |
++-----------------------------------+
+|                               100 |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM mockdata GROUP BY JobTitle;
++------+----------------------------+-------------------------------------+-------------------+
+| ID   | JobTitle                   | EmailAddress                        | FirstNameLastName |
++------+----------------------------+-------------------------------------+-------------------+
+|    1 | Staffing Consultant        | Shay_Shields3896@muall.tech         | Shay Shields      |
+|    2 | Steward                    | Henry_Palmer2424@atink.com          | Henry Palmer      |
+|    3 | Electrician                | Johnny_Carter6641@gmail.com         | Johnny Carter     |
+|    4 | Call Center Representative | Kendra_Shepherd5229@fuliss.net      | Kendra Shepherd   |
+|    5 | Doctor                     | Tom_Parsons3099@gembat.biz          | Tom Parsons       |
+|    6 | Project Manager            | Kieth_Ventura3084@muall.tech        | Kieth Ventura     |
+|    8 | Operator                   | Marie_Roscoe3101@kideod.biz         | Marie Roscoe      |
+|    9 | Machine Operator           | Callie_Woodley319@fuliss.net        | Callie Woodley    |
+|   10 | Webmaster                  | Ellen_Redwood1789@nanoff.biz        | Ellen Redwood     |
+|   11 | Budget Analyst             | Courtney_Kerr9607@gembat.biz        | Courtney Kerr     |
+|   12 | Fabricator                 | Paige_Bristow5049@gompie.com        | Paige Bristow     |
+|   15 | Auditor                    | Ronald_Simpson6319@typill.biz       | Ronald Simpson    |
+|   16 | Bookkeeper                 | Daniel_Ellwood4130@joiniaa.com      | Daniel Ellwood    |
+|   17 | Food Technologist          | Isabella_Graham5770@nanoff.biz      | Isabella Graham   |
+|   18 | Design Engineer            | Vanessa_Stone6511@supunk.biz        | Vanessa Stone     |
+|   19 | Audiologist                | Wendy_Nanton1463@nickia.com         | Wendy Nanton      |
+|   20 | Retail Trainee             | Lucy_Patel38@famism.biz             | Lucy Patel        |
+|   21 | Designer                   | Erica_Andrews9924@brety.org         | Erica Andrews     |
+|   22 | Accountant                 | Peyton_Hale9609@womeona.net         | Peyton Hale       |
+|   25 | Ambulatory Nurse           | Miriam_Hudson1775@gembat.biz        | Miriam Hudson     |
+|   28 | Dentist                    | Ruby_Ellison4824@bungar.biz         | Ruby Ellison      |
+|   29 | Cook                       | Kurt_Vaughn8473@bulaffy.com         | Kurt Vaughn       |
+|   30 | Clerk                      | Bob_Anderson7564@vetan.org          | Bob Anderson      |
+|   31 | Health Educator            | Marvin_Chadwick9940@infotech44.tech | Marvin Chadwick   |
+|   32 | CNC Operator               | Oliver_Butler837@bulaffy.com        | Oliver Butler     |
+|   33 | Service Supervisor         | Eileen_Morris4583@gompie.com        | Eileen Morris     |
+|   38 | Web Developer              | Ivette_Reyes3073@extex.org          | Ivette Reyes      |
+|   40 | Chef Manager               | Michaela_Weasley6052@sheye.org      | Michaela Weasley  |
+|   41 | Physician                  | Carter_Norton6625@bauros.biz        | Carter Norton     |
+|   46 | Assistant Buyer            | Jacqueline_Hunt6787@kideod.biz      | Jacqueline Hunt   |
+|   47 | Insurance Broker           | Caleb_Shields7370@bretoux.com       | Caleb Shields     |
+|   48 | Executive Director         | David_Gallacher4606@joiniaa.com     | David Gallacher   |
+|   49 | Cash Manager               | Gil_Thomson2535@dionrab.com         | Gil Thomson       |
+|   51 | Treasurer                  | Iris_Freeburn3988@yahoo.com         | Iris Freeburn     |
+|   53 | Mobile Developer           | Hailey_Baker6488@elnee.tech         | Hailey Baker      |
+|   54 | Business Broker            | Alice_Hill3599@bauros.biz           | Alice Hill        |
+|   58 | HR Specialist              | Audrey_Thomas7056@deavo.com         | Audrey Thomas     |
+|   63 | Bellman                    | Barney_Lowe4502@acrit.org           | Barney Lowe       |
+|   67 | Front Desk Coordinator     | Charlize_Freeburn9310@nickia.com    | Charlize Freeburn |
+|   72 | Loan Officer               | Bob_Redden6068@deons.tech           | Bob Redden        |
+|   74 | Production Painter         | Tyson_Griffiths451@gmail.com        | Tyson Griffiths   |
+|   78 | Pharmacist                 | Rufus_Fall8759@twace.org            | Rufus Fall        |
+|   83 | Investment  Advisor        | Bob_Cooper5812@extex.org            | Bob Cooper        |
+|   84 | Biologist                  | Clint_Redwood5486@jiman.org         | Clint Redwood     |
+|   91 | Baker                      | George_Page 6332@bungar.biz         | George Page       |
+|   98 | Paramedic                  | Mike_Corbett1500@corti.com          | Mike Corbett      |
++------+----------------------------+-------------------------------------+-------------------+
+46 rows in set (0.00 sec)
+
+
+
+
+
+
+
